@@ -3,7 +3,7 @@ Tutorial for template creation
 
 A template defines which data attributes you wish to retrieve from an
 invoice. Each template should work on all invoices of a company or
-subsidiary (e.g. Amazon Germany vs Amazon US).
+subsidiary (e.g. Qatar Airlines, British Airways).
 
 Adding templates is easy and shouldn’t take longer than adding 2-3
 invoices by hand. We use a simple YML-format. Many options are optional
@@ -16,11 +16,11 @@ Simple invoice template
 -----------------------
 
 Here is a sample of a minimal invoice template to read invoiced issued
-by Microsoft Hong Kong:
+by Korean Airways:
 
 ::
 
-    issuer: Korean Air
+    issuer: Korean Airways
     fields:
         RefNo: Order\s+Number:\s+(\w+)
         PartNumber: Part\s+Number\s+(\w+-\w+)
@@ -51,8 +51,8 @@ capturing group. It’s not required to put add the whole regex to the
 capturing group. Often we use keywords and only capture part of the
 match.
 
-You will need to understand regular expressions to find the right
-values. See about them
+Understand regular expressions to find the right values. 
+See about them
 `here <http://www.zytrax.com/tech/web/regex.htm>`__ or `test them
 here <http://www.regexr.com/>`__. We use `Python’s regex
 engine <https://docs.python.org/2/library/re.html>`__. It won’t matter
@@ -103,15 +103,14 @@ The ``tables``  allows you to parse table-oriented fields that have a row
 of column headers followed by a row of values on the next line. The plugin
 requires a ``start`` and ``end`` regex to identify where the table is located
 in the invoice. The ``body`` regex should contain named capture groups that
-will be added to the fields output. The plugin will attempt to match the
-``body`` regex to the invoice content found between the ``start`` and ``end``
-regexes.
+will be added to the fields output. This attempt to match the ``body`` regex 
+to the invoice content found between the ``start`` and ``end`` regexes.
 
 An example invoice that contains table-oriented data may look like:
 
 ::
 
-    Company Name: American Airlines                                                         RO No. 8666857579
+    Company Name: XYZ Airlines                                                             RO No. 8666857579
 
     Part Details                                                       P/N:                S/N:        Batch
     PCBA,SDB,PROC,NAN-DR.                                             101-AJ878          363574348     733374
@@ -121,9 +120,9 @@ An example invoice that contains table-oriented data may look like:
 
 Shipping Instruction: - If the chargeable weight (volumetric weight or actual weight whichever is higher) of the shipment is
 non hazmat and 40Kgs, please use DHL Express account# 963291042 and if > 40Kgs and/or hazmat, please contact 24/7
-Ethiopian Logistics at ETInboundlogistics@ethiopianairlines.com <mailto:ETInboundlogistics@ethiopianairlines.com>
+XYZ Logistics at ETInboundlogistics@ethiopianairlines.com <mailto:ETInboundlogistics@ethiopianairlines.com>
 Tel: +251-929-908-759 or +251-929-908-757 for a shipping instruction.
-Shipments should be onboard Ethiopian fleet only and delivered to Ethiopian cargo office or Ethiopian forwarding agent.
+Shipments should be onboard XYZ fleet only and delivered to XYZ cargo office or XYZ forwarding agent.
 
 
 The PartDescription, PartNumber and SerialNumber, Batch, deliverydate, and
@@ -137,7 +136,7 @@ A template to capture these fields may look like:
         end: Delivery Date
         body: (?P<PartDescription>(?:\S ?)+)\s+(?P<PartNumber>\w+-\w+)\s+(?P<SerialNumber>\w+)\s+(?P<Batch>\d+)
       - start: Shipping Date\s+Contact
-        end: DESCRIPTION
+        end: Shipping Instruction
         body: (?P<DeliveryDate>\d{1,2}-\w+-\d{4})\s+(?P<Contact>(?:\w+ ?)+)
 
 
