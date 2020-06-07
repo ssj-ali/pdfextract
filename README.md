@@ -34,7 +34,7 @@
 3. Run main.exe follow these steps
    - Add the template folder containg templates files in ```.yml``` format. You can add your own template folder.
    - Add multiple pdf files to the listbox and press Done
-   - Extract Text button is used while creating template. See Template Tutorial
+   - Extract Text button is used while creating template. See [Template Tutorial](https://github.com/ssj-ali/pdfextract/blob/master/TUTORIAL.rst)
    
 
 ## Key Points
@@ -53,7 +53,7 @@
 
 3. We can multiple regex per field (if layout or wording changes)
 
-4. For creating a template see Template Tutorial
+4. For creating a template see [Template Tutorial](https://github.com/ssj-ali/pdfextract/blob/master/TUTORIAL.rst)
 
 
 ## Future Enhancements
