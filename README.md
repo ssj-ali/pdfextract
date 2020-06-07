@@ -23,17 +23,19 @@
 ## Installion Guide
 **Only for 64-bit currently**
 
-1. Download the zip file and extract it somewhere
+1. Download [this](https://drive.google.com/file/d/1DylXqRec8tYq-Av6SJTzHR7Ib9jeqN4L/view?usp=sharing) zip file and extract it somewhere
 
-2. The zip contains three items 
+2. The zip contains four items 
    - main.exe
    - pdftotext.exe
-   - folder containing folder
+   - folder containing PDFs
+   - folder containing templates
+   
 **Note: Don't delete pdftotext.exe. Also keep the pdftotext.exe and main.exe in the same directory**
    
 3. Run main.exe follow these steps
-   - Add the template folder containg templates files in ```.yml``` format. You can add your own template folder.
-   - Add multiple pdf files to the listbox and press Done
+   - Add the template folder containg templates files in ```.yml``` format. (You can add your own template folder)
+   - Add multiple .pdf files to the listbox and press Done
    - Extract Text button is used while creating template. See [Template Tutorial](https://github.com/ssj-ali/pdfextract/blob/master/TUTORIAL.rst)
    
 
