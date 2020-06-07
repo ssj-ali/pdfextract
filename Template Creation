@@ -1,2 +1,0 @@
-Template is just instructions to the regex to capture specific groups
-Templates are based on Yaml. They define one or more keywords to find the right template and regexp for fields to be extracted.
