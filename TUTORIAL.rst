@@ -10,11 +10,7 @@ invoices by hand. We use a simple YML-format. Many options are optional
 and you just need them to take care of edge cases.
 
 Existing templates can be found in the project folder or the installed
-package under ``/invoice2data/templates/``. During testing you can use
-the ``--template-folder`` option to point to your own, new template
-files. If you add or improve templates that could be useful for
-everyone, we encourage you to file a pull request to the main repo, so
-everyone can use it.
+package under ``/pakage/mytemplates/``.
 
 Simple invoice template
 -----------------------
@@ -24,19 +20,18 @@ by Microsoft Hong Kong:
 
 ::
 
-    issuer: Microsoft Regional Sales Corporation
-    keywords:
-    - Microsoft
-    - M9-0002526-N
+    issuer: Korean Air
     fields:
-      amount: GrandTotal(\d+\.\d+)HKD
-      date: DocumentDate:(\d{1,2}\/\d{1,2}\/\d{4})
-      invoice_number: InvoiceNo.:(\w+)
-    options:
-      remove_whitespace: true
-      currency: HKD
-      date_formats:
-        - '%d/%m/%Y'
+        RefNo: Order\s+Number:\s+(\w+)
+        PartNumber: Part\s+Number\s+(\w+-\w+)
+        SerialNumber: Serial Number\s+(?=[A-Z])(\w+)
+        PartDescription: Description\s+((?:\S ?)+)
+        DeliveryDate: Removal Date\s+(\d+-\w+-\d+)
+        CustomerName: Name\s+((?:\S+ ?)+)
+    keywords:
+    - Korea
+    - Seoul
+
 
 Let’s look at each field:
 
@@ -44,57 +39,26 @@ Let’s look at each field:
    and country.
 -  ``keywords``: Also a required field. These are used to pick the
    correct template. Be as specific as possible. As we add more
-   templates, we need to avoid duplicate matches. Using the VAT number,
-   email, website, phone, etc are generally good choices. ALL keywords
-   need to match to use the template.
+   templates, we need to avoid duplicate matches.
 
 Fields
 ~~~~~~
 
 All the regex ``fields`` you need extracted. Required fields are
-``amount``, ``date``, ``invoice_number``. It’s up to you, if you need
+``SerialNumber``, ``DeliveryDate``, ``POnumber``. It’s up to you, if you need
 more fields extracted. Each field has one or more regex with one regex
 capturing group. It’s not required to put add the whole regex to the
 capturing group. Often we use keywords and only capture part of the
-match (e.g. the amount).
+match.
 
 You will need to understand regular expressions to find the right
-values. If you didn’t need them in your life up until now (lucky you),
-you can learn about them
+values. See about them
 `here <http://www.zytrax.com/tech/web/regex.htm>`__ or `test them
 here <http://www.regexr.com/>`__. We use `Python’s regex
 engine <https://docs.python.org/2/library/re.html>`__. It won’t matter
 for the simple expressions we need, but sometimes there are subtle
 differences when e.g. coming from Perl.
 
-For non-text fields, the name of the field is important:
-
--  the name of the field for date fields should start with **date**
--  the name of the field for float fields should start with **amount**
-
-There are also special prefixes that you can add to your field name:
-
--  **static\_**: it will return the defined value (no regular expression
-   is executed)
--  **sum\_**: combined with a list of several regexps, it will return
-   the sum of the amounts caught by each regexp (instead of returning
-   the amount caught by the first regexp that caught something)
-
-Note that these special prefix for field names are removed when
-returning the result.
-
-Example with the *sum\_* prefix:
-
-::
-
-    fields:
-      sum_amount_tax:
-        - VAT\s+10%\s+(\d+,\d{2})
-        - VAT\s+20%\s+(\d+,\d{2})
-
-If the first regexp for VAT 10% catches 1.5 and the second regexp for
-VAT 20% catches 4.0, the result will be {‘amount_tax’: 5.50, ‘date’: …}
-(the *sum\_* prefix is removed).
 
 Lines
 ~~~~~
@@ -112,12 +76,12 @@ like
 
     the address, etc.
 
-      Item        Discount      Price
+      Item        Qty             Price
 
-     1st item     0.0 %           42.00
-     2nd item     10.0 %          37.80
+     1st item     0               00.00
+     2nd item     0               00.00
 
-                          Total   79.80
+                          Total   00.00
 
     A footer
 
@@ -126,33 +90,16 @@ your lines definition should look like
 ::
 
     lines:
-        start: Item\s+Discount\s+Price$
+        start: Item\s+Qty\s+Price$
         end: \s+Total
-        line: (?P<description>.+)\s+(?P<discount>\d+.\d+)\s+(?P<price>\d+\d+)
+        line: (?P<description>.+)\s+(?P<Qty>\d+.\d+)\s+(?P<price>\d+\d+)
 
-Then if you want the parser to coerce the fields to numeric types (by
-default, they are strings), you can add a ``types`` key below ``lines``:
 
-::
-
-        types:
-            discount: float
-            price: float
-
-The example above is very simplistic, most invoices at least potentially
-can have multiple lines per invoice item. In order to parse this
-correctly, you can also give a ``first_line`` and/or ``last_line``
-regex. For every line, the parser will check if ``first_line`` matches,
-if yes, it’s a new line. If not, it checks if ``last_line`` matches, if
-yes, the current line is commited, if not, ``line`` regex is checked,
-and if this one doesn’t match either, this line is ignored. This implies
-that you need to take care that the ``first_line`` regex is the most
-specific one, and ``line`` the least specific.
 
 Tables
 ~~~~~
 
-The ``tables`` plugin allows you to parse table-oriented fields that have a row
+The ``tables``  allows you to parse table-oriented fields that have a row
 of column headers followed by a row of values on the next line. The plugin
 requires a ``start`` and ``end`` regex to identify where the table is located
 in the invoice. The ``body`` regex should contain named capture groups that
@@ -164,113 +111,48 @@ An example invoice that contains table-oriented data may look like:
 
 ::
 
-    Guest Name: Sanjay                                                                      Date: 31/12/2017
+    Company Name: American Airlines                                                         RO No. 8666857579
 
-    Hotel Details                                                   Check In            Check Out       Rooms
-    OYO 4189 Resort Nanganallur,                                    31/12/2017          01/01/2018      1
-    25,Vembuliamman Koil Street,, Pazhavanthangal, Chennai
-                                                                        Booking ID              Payment Mode
-                                                                        IBZY2087                Cash at Hotel
+    Part Details                                                       P/N:                S/N:        Batch
+    PCBA,SDB,PROC,NAN-DR.                                             101-AJ878          363574348     733374
+    
+                                                                        Delivery Date               Contact
+                                                                        22-May-2019                Fred Lee  
 
-    DESCRIPTION                                             RATE                                    AMOUNT
+Shipping Instruction: - If the chargeable weight (volumetric weight or actual weight whichever is higher) of the shipment is
+non hazmat and 40Kgs, please use DHL Express account# 963291042 and if > 40Kgs and/or hazmat, please contact 24/7
+Ethiopian Logistics at ETInboundlogistics@ethiopianairlines.com <mailto:ETInboundlogistics@ethiopianairlines.com>
+Tel: +251-929-908-759 or +251-929-908-757 for a shipping instruction.
+Shipments should be onboard Ethiopian fleet only and delivered to Ethiopian cargo office or Ethiopian forwarding agent.
 
-    Room Charges                                            Rs 1939 x 1 Night x 1 Room              Rs 1939
 
-    Grand Total                                                                                     Rs 1939
-
-    Payment received by OYO                                 Paid through Cash At Hotel (Rs 1939)    Rs 1939
-
-    Balance ( if any )                                                                              Rs 0
-
-The hotel name, check in and check out dates, room count, booking ID, and
-payment mode are all located on different lines from their column headings.
+The PartDescription, PartNumber and SerialNumber, Batch, deliverydate, and
+Contact are all located on different lines from their column headings.
 A template to capture these fields may look like:
 
 ::
 
     tables:
-      - start: Hotel Details\s+Check In\s+Check Out\s+Rooms
-        end: Booking ID
-        body: (?P<hotel_details>[\S ]+),\s+(?P<date_check_in>\d{1,2}\/\d{1,2}\/\d{4})\s+(?P<date_check_out>\d{1,2}\/\d{1,2}\/\d{4})\s+(?P<amount_rooms>\d+)
-      - start: Booking ID\s+Payment Mode
+      - start: Part Details\s+P/N\s+S/N\s+Batch
+        end: Delivery Date
+        body: (?P<PartDescription>(?:\S ?)+)\s+(?P<PartNumber>\w+-\w+)\s+(?P<SerialNumber>\w+)\s+(?P<Batch>\d+)
+      - start: Shipping Date\s+Contact
         end: DESCRIPTION
-        body: (?P<booking_id>\w+)\s+(?P<payment_method>(?:\w+ ?)*)
+        body: (?P<DeliveryDate>\d{1,2}-\w+-\d{4})\s+(?P<Contact>(?:\w+ ?)+)
 
-The plugin supports multiple tables per invoice as seen in the example.
 
-By default, all fields are parsed as strings. The ``tables`` plugin supports
-the ``amount`` and ``date`` field naming conventions to convert data types.
 
-Options
-~~~~~~~
-
-Everything under ``options`` is optional. We expect to add more options
-in the future to handle edge cases we find. Currently the most important
-options and their defaults are:
-
--  ``currency`` (default = ``EUR``): The currency code returned. Many
-   people will want to change this.
--  ``decimal_separator`` (default = ``.``): German invoices use ``,`` as
-   decimal separator. So here is your chance to change it.
--  ``remove_whitespace`` (default = ``False``): Ignore any spaces. Often
-   makes regex easier to write. Also used quite often.
--  ``remove_accents`` (default = ``False``): Useful when in France.
-   Saves you from putting accents in your regular expressions.
--  ``lowercase`` (default = ``False``): Similar to whitespace removal.
--  ``date_formats`` (default = ``[]``): We use dateparser/dateutil to
-   ‘guess’ the correct date format. Sometimes this doesn’t work and you
-   can set one or more additional date formats. These are passed
-   directly to
-   `dateparser <https://github.com/scrapinghub/dateparser>`__.
--  ``languages`` (default = []): Also passed to ``dateparser`` to parse
-   names of months.
--  ``replace`` (default = ``[]``): Additional search and replace before
-   matching. Not needed usually.
--  ``required_fields``: By default the template should have regex for date, amount, 
-   invoice_number and issuer. If you wish to extract different fields, you can supply 
-   a list here. The extraction will fail if not all fields are matched.
-
-Example of template using most options
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-::
-
-    issuer: Free Mobile
-    fields:
-      amount: \spayer TTC\*\s+(\d+.\d{2})
-      amount_untaxed: Total de la facture HT\s+(\d+.\d{2})
-      date: Facture no \d+ du (\d+ .+ \d{4})
-      invoice_number: Facture no (\d+)
-      static_vat: FR25499247138
-    keywords:
-      - FR25499247138
-      - Facture
-    required_fields:
-      - static_vat
-      - invoice_number
-    options:
-      currency: EUR
-      date_formats:
-        - '%d %B %Y'
-      languages:
-        - fr
-      decimal_separator: '.'
-      replace:
-        - ['e´ ', 'é']
 
 Steps to add new template
 -------------------------
 
-To add a new template, we recommend this workflow:
+To add a new template, I recommend this workflow:
 
 1. Copy existing template to new file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Find a template that is roughly similar to what you need and copy it to
-a new file. It’s good practice to use reverse domain notation. E.g.
-``country.company.division.language.yml`` or
-``fr.mobile.enterprise.french.yml``. Language is not always needed.
-Template folder are searched recursively for files ending in ``.yml``.
+a new file. 
 
 2. Change invoice issuer
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -280,46 +162,27 @@ Just used in the output. Best to use the company name.
 3. Set keyword
 ~~~~~~~~~~~~~~
 
-Look at the invoice and find the best identifying string. Tax number +
+Look at the invoice and find the best identifying string. Location +
 company name are good options. Remember, *all* keywords need to be found
 for the template to be used.
 
-Keywords are compared *after* processing the extracted text. So if you
-use lowercase or remove-whitespace processing, adapt keywords
-accordingly.
 
 4. First test run
 ~~~~~~~~~~~~~~~~~
 
-Now we’re ready to see how far we are off. Run ``invoice2data`` with the
-following debug command to see if your keywords match and how much work
-is needed for dates, etc.
-
-``invoice2data --template-folder tpl --debug invoice-XXX.pdf``
-
-This test run shows you how the program will “see” the text in the
-invoice. Parsing PDFs is sometimes a bit unpredictable. Also make sure
-your template is used. You should already receive some data from static
-fields or currencies.
+Now open that th ``main.exe`` application click on ''Extract text'' button.
+Then select the pdf of which you want to make the template of.
+So instead of using PDF directly, one should extract its data and then use it 
+to make template. This is preferred because PDF data are not well formatted so 
+there can be difference between what is seen & what is extracted. 
 
 5. Add regular expressions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now you can use the debugging text to add regex fields for the
-information you need. It’s a good idea to copy parts of the text
-directly from the debug output and then replace the dynamic parts with
-regex. Keep in mind that some characters need escaping. To test, re-run
-the above command.
-
--  ``date`` field: First capture the date. Then see if ``dateparser``
-   handles it correctly. If not, add your format or language under
-   options.
--  ``amount``: Capture the number *without* currency code. If you expect
-   high amounts, replace the thousand separator. Currently we don’t
-   parse numbers via locals (TODO)
+Now you can use add regex fields for the information you need. 
 
 6. Done
 ~~~~~~~
 
-Now you’re ready to commit and push your template, so others get a
-chance to use and improve it.
+Now you’re ready to push your template. See other example of pdf and their
+templates in the zip file attached.
