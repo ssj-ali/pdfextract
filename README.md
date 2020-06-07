@@ -51,7 +51,9 @@
 
 2. In templates, the field name should be same for all pdfs. For example, if the field name for serial number is SerialNo in one template and S.No in other template then both will considered different field in the final excel sheet.
 
-3. For creating a template see Template Tutorial
+3. We can multiple regex per field (if layout or wording changes)
+
+4. For creating a template see Template Tutorial
 
 
 ## Future Enhancements
