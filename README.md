@@ -3,17 +3,17 @@
 ## Prerequisite
 **Note: The below steps are only required if you want to extract data from scanned pdf. If there are only vector PDFs no need to do the following steps**
 
-1. Download Tesseract. Follow this link: https://github.com/UB-Mannheim/tesseract/wiki
+1. Download Tesseract. Follow this link: [Download Tesseract](https://github.com/UB-Mannheim/tesseract/wiki)
 
 2. While installing, select all the languages you want to detect.
 
 3. Add the path of Tesseract OCR folder (e.g ```C:\Program Files\Tesseract-OCR```) to the Environmental Variables -> System Variables -> Path
 
-4. Download GhostScript. Follow the link: https://www.ghostscript.com/download/gsdnld.html
+4. Download GhostScript. Follow the link: [Download GhostScript](https://www.ghostscript.com/download/gsdnld.html)
 
 5. Add the path of GhostScript bin folder (e.g ```C:\Program Files\gs\gs9.52\bin```) to the Environmental Variables -> System Variables -> Path
 
-6. Download ImageMagick. Follow this link: https://legacy.imagemagick.org/script/binary-releases.php
+6. Download ImageMagick. Follow this link: [Download ImageMagick](https://legacy.imagemagick.org/script/binary-releases.php)
 
 7. Add the path of ImageMagick folder (e.g ```C:\Program Files\ImageMagick-6.9.11-Q16```) to the Environmental Variables -> System Variables -> Path
 
