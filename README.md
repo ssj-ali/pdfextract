@@ -9,7 +9,7 @@
 
 3. Add the path of Tesseract OCR folder (e.g ```C:\Program Files\Tesseract-OCR```) to the Environmental Variables -> System Variables -> Path. 
 
-Follow like this: Control panel -> System and Security -> System -> Advanced system settings -> Enironmental Variables -> Select 'Path' (in lower section named System variables) and click 'Edit'-> New -> add path to the folder Tesseract-OCR. Check in your file explorer where this folder is: most likely this ```C:\Program Files\Tesseract-OCR```
+   Follow this: Control panel -> System and Security -> System -> Advanced system settings -> Enironmental Variables -> Select 'Path'    (in lower section named System variables) and click 'Edit'-> New -> add path to the folder Tesseract-OCR. Check in your file explorer where this folder is: most likely this ```C:\Program Files\Tesseract-OCR```
 
 4. Download GhostScript. Follow the link: [Download GhostScript](https://www.ghostscript.com/download/gsdnld.html)
 
