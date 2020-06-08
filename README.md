@@ -35,8 +35,16 @@
    
 3. Run main.exe follow these steps
    - Add the template folder containg templates files in ```.yml``` format. (You can add your own template folder)
+   ![Step 1](https://github.com/ssj-ali/pdfextract/blob/master/Screenshot%20(37).png?raw=true)
+   ![Step 2](https://github.com/ssj-ali/pdfextract/blob/master/Screenshot%20(39).png?raw=true)
    - Add multiple .pdf files to the listbox and press Done
-   - Extract Text button is used while creating template. See [Template Tutorial](https://github.com/ssj-ali/pdfextract/blob/master/TUTORIAL.rst)
+   ![Step 3](https://github.com/ssj-ali/pdfextract/blob/master/Screenshot%20(40).png?raw=true)
+   ![Step 4](https://github.com/ssj-ali/pdfextract/blob/master/Screenshot%20(41).png?raw=true)
+   ![Step 5](https://github.com/ssj-ali/pdfextract/blob/master/Screenshot%20(42).png?raw=true)
+   ![Step 6](https://github.com/ssj-ali/pdfextract/blob/master/Screenshot%20(44).png?raw=true)
+   ![Step 7](https://github.com/ssj-ali/pdfextract/blob/master/Screenshot%20(46).png?raw=true)
+ 
+**__ Note:Extract Text button is used while creating template. See [Template Tutorial](https://github.com/ssj-ali/pdfextract/blob/master/TUTORIAL.rst)__**
    
 
 ## Key Points
