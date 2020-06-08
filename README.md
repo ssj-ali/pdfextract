@@ -7,15 +7,16 @@
 
 2. While installing, select all the languages you want to detect.
 
-3. Add the path of Tesseract OCR folder (e.g ```C:\Program Files\Tesseract-OCR```) to the Environmental Variables -> System Variables -> Path
+3. Add the path of Tesseract OCR folder (e.g ```C:\Program Files\Tesseract-OCR```) to the Environmental Variables -> System Variables -> Path. 
+Like this: Control panel -> System and Security -> System -> Advanced system settings -> Enironmental Variables -> Select 'Path' (in lower section named System variables) and click 'Edit'-> New -> add path to the folder Tesseract-OCR. Check in your file explorer where this folder is: most likely this ```C:\Program Files\Tesseract-OCR```
 
 4. Download GhostScript. Follow the link: [Download GhostScript](https://www.ghostscript.com/download/gsdnld.html)
 
-5. Add the path of GhostScript bin folder (e.g ```C:\Program Files\gs\gs9.52\bin```) to the Environmental Variables -> System Variables -> Path
+5. Add the path of GhostScript bin folder (e.g ```C:\Program Files\gs\gs9.52\bin```) to the Environmental Variables -> System Variables -> Path. Same as step 3
 
 6. Download ImageMagick. Follow this link: [Download ImageMagick](https://legacy.imagemagick.org/script/binary-releases.php)
 
-7. Add the path of ImageMagick folder (e.g ```C:\Program Files\ImageMagick-6.9.11-Q16```) to the Environmental Variables -> System Variables -> Path
+7. Add the path of ImageMagick folder (e.g ```C:\Program Files\ImageMagick-6.9.11-Q16```) to the Environmental Variables -> System Variables -> Path. Same as step 3
 
 8. Go to ImageMagick folder (e.g ```C:\Program Files\ImageMagick-6.9.11-Q16```) and find the *convert.exe* application. Rename it from '*convert*' to '*imconvert*'. Reason for it is windows already contain another *convert.exe* application therefore there is a possibility of overriding our imagemagick *convert.exe*
 
