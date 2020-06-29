@@ -24,7 +24,7 @@
    - Add the template folder containg templates files in ```.yml``` format.
    - Add/Remove multiple .pdf files to the listbox and press Done
  
-**__ Note:Extract Text button is used while creating template. See [Template Tutorial](https://github.com/ssj-ali/pdfextract/blob/master/TUTORIAL.rst)__**
+**_Note:Extract Text button is used while creating template. See [Template Tutorial](https://github.com/ssj-ali/pdfextract/blob/master/TemplateTutorial.rst)_**
    
 
 ## Key Points
@@ -43,7 +43,7 @@
 
 3. We can have multiple regex per field (if layout or wording changes)
 
-4. For creating a template see [Template Tutorial](https://github.com/ssj-ali/pdfextract/blob/master/TUTORIAL.rst)
+4. For creating a template see [Template Tutorial](https://github.com/ssj-ali/pdfextract/blob/master/TemplateTutorial.rst)
 
 
 
