@@ -1,4 +1,3 @@
-*This is not the final version of the application
 
 ## Prerequisite
 **Note: The below steps are only required if you want to extract data from scanned pdf. If there are only vector PDFs no need to do the following steps**
