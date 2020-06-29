@@ -5,21 +5,15 @@
 
 1. Download Tesseract. Follow this link: [Download Tesseract](https://github.com/UB-Mannheim/tesseract/wiki)
 
-2. While installing, select all the languages you want to detect.
-
-3. Add the path of Tesseract OCR folder (e.g ```C:\Program Files\Tesseract-OCR```) to the Environmental Variables -> System Variables -> Path. 
+2. Add the path of Tesseract OCR folder (e.g ```C:\Program Files\Tesseract-OCR```) to the Environmental Variables -> System Variables -> Path. 
 
    Follow this: Control panel -> System and Security -> System -> Advanced system settings -> Enironmental Variables -> Select 'Path'    (in lower section named System variables) and click 'Edit'-> New -> add path to the folder Tesseract-OCR. Check in your file explorer where this folder is: most likely this ```C:\Program Files\Tesseract-OCR```
 
-4. Download GhostScript. Follow the link: [Download GhostScript](https://www.ghostscript.com/download/gsdnld.html)
+3. Download ImageMagick. Follow this link: [Download ImageMagick](https://legacy.imagemagick.org/script/binary-releases.php)
 
-5. Add the path of GhostScript bin folder (e.g ```C:\Program Files\gs\gs9.52\bin```) to the Environmental Variables -> System Variables -> Path. Same as step 3
+4. Add the path of ImageMagick folder (e.g ```C:\Program Files\ImageMagick-6.9.11-Q16```) to the Environmental Variables -> System Variables -> Path. Same as step 3
 
-6. Download ImageMagick. Follow this link: [Download ImageMagick](https://legacy.imagemagick.org/script/binary-releases.php)
-
-7. Add the path of ImageMagick folder (e.g ```C:\Program Files\ImageMagick-6.9.11-Q16```) to the Environmental Variables -> System Variables -> Path. Same as step 3
-
-8. Go to ImageMagick folder (e.g ```C:\Program Files\ImageMagick-6.9.11-Q16```) and find the *convert.exe* application. Rename it from '*convert*' to '*imconvert*'. Reason for it is windows already contain another *convert.exe* application therefore there is a possibility of overriding our imagemagick *convert.exe*
+5. Go to ImageMagick folder (e.g ```C:\Program Files\ImageMagick-6.9.11-Q16```) and find the *convert.exe* application. Rename it from '*convert*' to '*imconvert*'. Reason for it is windows already contain another *convert.exe* application therefore there is a possibility of overriding our imagemagick *convert.exe*
 
 
 ## Installion Guide
@@ -63,20 +57,12 @@
 
 2. In templates, the field name should be same for all pdfs. For example, if the field name for serial number is SerialNo in one template and S.No in other template then both will considered different field in the final excel sheet.
 
-3. We can multiple regex per field (if layout or wording changes)
+3. We can have multiple regex per field (if layout or wording changes)
 
 4. For creating a template see [Template Tutorial](https://github.com/ssj-ali/pdfextract/blob/master/TUTORIAL.rst)
 
 
-## Future Enhancements
-
-1. This application automatically parse Dates. I can add a option in which user can set the format of dates in the final excel.
-
-2. More fluent GUI and Debugger.
-
 
 ## Challenges
 
-1. OCR takes time about 4 secs per page. And Every pdf contains on an average 6 pages. A possible solution is to preprocess PDF and delete all pages other than first. As all the information are contained in first page only.
-
-2. Very few times OCR is unable to detect properly because the scanned PDF was not clean. Errors are like 0(zero) is scanned as O(letter)
+1. Very few times OCR is unable to detect properly because the scanned PDF was not clean. Errors are like 0(zero) is scanned as O(letter)
