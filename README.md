@@ -31,7 +31,7 @@
 
 1. If a PDF is a vector pdf, pdftotext is used to extract data from pdf and it works instantly (< 1 sec per PDF)
 
-2. If a PDF is a scanned pdf, tesseract + imagemagick + ghostscript is used to extract data. (Time: 4 sec per page)
+2. If a PDF is a scanned pdf, tesseract + imagemagick + ghostscript is used to extract data. (Time: 3-4 sec per PDF)
 
 
 
