@@ -8,7 +8,7 @@
 
    Follow this: Control panel -> System and Security -> System -> Advanced system settings -> Enironmental Variables -> Select 'Path'    (in lower section named System variables) and click 'Edit'-> New -> add path to the folder Tesseract-OCR. Check in your file explorer where this folder is: most likely this ```C:\Program Files\Tesseract-OCR```
 
-3. Download ImageMagick. Follow this link: [Download ImageMagick](https://legacy.imagemagick.org/script/binary-releases.php) ImageMagick is used to preprocess PDF i.e cleaning the PDFs pages and then converting conerting it to tiff file. 
+3. Download ImageMagick. Follow this link: [Download ImageMagick](https://legacy.imagemagick.org/script/binary-releases.php). ImageMagick is used to preprocess PDF i.e cleaning the PDFs pages and then converting conerting it to tiff file. 
 
 4. Add the path of ImageMagick folder (e.g ```C:\Program Files\ImageMagick-6.9.11-Q16```) to the Environmental Variables -> System Variables -> Path. Same as step 3
 
