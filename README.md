@@ -36,7 +36,7 @@
 
 
 ## Template System
-
+![Template System](https://drive.google.com/uc?export=view&id=1ioER3qXzAo4oleaxqT-CGfzqJcKbLPOk)
 1. The extracted fields only depends on template i.e if more fields are required to be extracted, we just need to edit templates.
 
 2. In templates, the field name should be same for all pdfs. For example, if the field name for serial number is SerialNo in one template and S.No in other template then both will considered different field in the final excel sheet.
