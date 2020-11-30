@@ -1,4 +1,4 @@
-
+![Basic Architecture](https://drive.google.com/uc?export=view&id=1Ezy8APuGhkH66-TL98sdKJY4N6gZEsEJ)
 ## Prerequisite
 **Note: The below steps are only required if you want to extract data from scanned pdf. If there are only vector PDFs no need to do the following steps**
 
